@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+		<style>
+		body{
+			background-color:rgb(220,220,220,0.5);
+		}
+		.chesang{
+			width: 600px;
+			height: 700px;
+			margin: 0 auto;
+			background-color:rgb(128,126,126,0.2);
+			border-radius: 20px;
+		}
+		.chesang h2{
+			padding-top: 40px;
+			color: black;
+			padding-left: 70px;
+			margin:0 auto;
+		}
+		.form{
+			padding-left: 50px;
+			margin-top: 30px;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div class="chesang">
+	<h2>Teacher Registration</h2>
+
+	<div class="form">
+	<form method="POST">{%csrf_token%}
+		{{form.as_p}}
+		<input type="submit">save</input>
+
+	</form>
+</div>
+</div>
+</body>
+</html>

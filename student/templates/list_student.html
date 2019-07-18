@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+	<div class="container">	
+	<table class="table table-bordered">
+		 <table class="table table-striped">
+		 <button type="submit"><a href="/student/add/">submit</a></button>
+	<tr>
+		<th>First Name</th>
+		<th>Second Name</th>
+		<th>Date of birth</th>
+		<th>Registration</th>
+		<th>Place of residence</th>
+		<th>more details</th>
+		<th>Edit details</th></tr>
+	{%for student in student%}
+	
+	<tr>
+		
+		<td>{{student.first_name}}</td>
+		<td>{{student.last_name}}</td>
+		<td>{{student.date_of_birth}}</td>
+		<td>{{student.regestration_number}}</td>
+		<td>{{student.place_of_resident}}</td>
+		<td><a href="/student/detail/{{student.pk}}/">more details</a></td>
+		<td><a href="/student/edit/{{student.pk}}/">Edit details</a></td>
+
+		<!-- <img src="{{ u.profile.avatar.url }}"> -->
+	</tr>
+	{%endfor%}
+	
+	</table>
+		</div>
+</body>
+</html>
