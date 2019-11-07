@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from.forms import CourseForm
 from.models import Course
-
+from django.http import HttpResponseBadRequest
 def add_course(request):
 	# form=CourseForm()
 	# return render(request,"add_course.html",{"form":form})
@@ -10,7 +10,9 @@ def add_course(request):
 		form=CourseForm(request.POST)
 		if form.is_valid():
 			form.save()
-		return redirect("list_course")	
+		# return redirect("list_course")	
+		else:
+			return HttpResponseBadRequest()
 	else:
 		form=CourseForm()
 	return render(request,"add_course.html",{"form":form})
