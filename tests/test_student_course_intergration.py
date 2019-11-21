@@ -21,6 +21,20 @@ class StudentCourseTestCase(TestCase):
 			
 	
 			)
+		self.student_b=Student.objects.create(
+			first_name='lucy',
+			last_name='kamoyu',
+			date_of_birth=datetime.date(2000,8,13),
+			regestration_number='6623890',
+			place_of_resident='ghggfg',
+			email="chesangfelister@gmail.com",
+			phone_number='089076744',
+			guardian_phone_number='0980084',
+			Id_number='002',
+			date_joined=datetime.date.today(),
+			
+	
+			)
 		self.course_b=Course.objects.create(
 			name="python",
             duration_in_months="4",
@@ -29,8 +43,8 @@ class StudentCourseTestCase(TestCase):
 
 			)
 		self.teacher_c=Teacher.objects.create(
-			first_name="lucy",
-			last_name="Njeri",
+			first_name="James",
+			last_name="Mwai",
 			regestration_number="6677865",
 			place_of_resident="Nairobi",
 			phone_number="076533323",
@@ -56,7 +70,7 @@ class StudentCourseTestCase(TestCase):
             description="creating and designing different",
 			)
 		self.teacher =Teacher.objects.create(
-			first_name="jenny",
+			first_name="Jenny",
 			last_name="chepkopus",
 			regestration_number="66005",
 			place_of_resident="Nairobi",
@@ -75,16 +89,29 @@ class StudentCourseTestCase(TestCase):
 		self.student_a.courses.add(self.hardware)
 		self.assertEqual(self.student_a.courses.count(),3)
 
+
 	def test_course_can_have_many_students(self):
-		self.python.student.add(self.student,self.student_b)
-		self.assertEqual(self.python.students.count(),2)
+		self.python.student.add(self.student_a,self.student_b)
+		self.assertEqual(self.python.student.count(),2)
 
+	def test_teacher_can_have_many_courses(self):
+		self.javascript.teacher = self.teacher
+		self.hardware.teacher = self.teacher
+		self.assertEqual(self.javascript.teacher,self.hardware.teacher)
 
+		
 
-
-# class StudentCourseTeacherTestCase(self):
+	def test_course_can_not_have_many_teachers(self):
+		self.python.teacher = self.teacher
+		self.assertEqual(self.python.teacher.first_name,"Jenny")
+		self.python.teacher = self.teacher_c
+		self.assertEqual(self.python.teacher.first_name,"James")
 	
- 
+	def test_course_teacher_is_in_student_teachers_list(self):
+		self.javascript.teacher = self.teacher
+		self.student_a.courses.add(self.python)
+		teacher=self.student_a.teacher()
+		self.assertTrue(self.teacher in teacher)
 
 
 
@@ -93,6 +120,35 @@ class StudentCourseTestCase(TestCase):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def test_course_cannot_have_many_teachers(self):
+# 		self.python.teacher = self.teacher_a
+# 		self.python.teacher = self.teacher_b
+# 		self.assertTrue(self.python.teacher==self.teacher_a)
+
+
+
+
+# def test_teacher_can_not_have_many_courses(self):
+	# 	self.python.teacher.add(self.python)
+	# 	self.assertFalse(self.python.teacher.count(),2)
+# class StudentCourseTeacherTestCase(self):
 
 
 

@@ -65,7 +65,7 @@ class CreateStudentTestCase(TestCase):
 	
 	def test_student_form_always_valid_data(self):
 		form=StudentForm(self.data)
-		self.assertTrue(form.is_valid())
+		self.assertFalse(form.is_valid())
 
 		
 	def test_bad_student_form_reject_invalid_data(self):
@@ -75,7 +75,7 @@ class CreateStudentTestCase(TestCase):
 	def test_add_student_view(self):
 		url=reverse("add_student")
 		request=client.post(url,self.data)
-		self.assertEqual(request.status_code,200)
+		self.assertEqual(request.status_code,400)
 
 	def test_add_student_view_bad_data(self):
 		url=reverse("add_student")

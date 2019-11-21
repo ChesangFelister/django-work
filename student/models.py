@@ -1,6 +1,7 @@
 from django.db import models
 from course.models import Course
 from django.core.exceptions import ValidationError
+from teacher.models import Teacher
 
 import datetime
 # Create your models here.
@@ -34,3 +35,5 @@ class Student(models.Model):
 			raise ValidationError("Only above 17 years and Above 30 years")
 		return age
 
+	def teachers(self):
+		return[courses.teacher for courses in self.courses.all]
